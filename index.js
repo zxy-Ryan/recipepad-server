@@ -11,12 +11,13 @@ import "dotenv/config";
 const app = express();
 const NETIFLY_URL = "https://main--comforting-kulfi-00884b.netlify.app";
 const FRONTEND_URL = NETIFLY_URL || 'http://localhost:3000';
+const ALLOWED_ORIGINS = [FRONTEND_URL, "http://localhost:3000"];
 app.use(morgan("dev")); // log every request to the console
 app.use(express.json({ limit: "30mb", extended: true })); // used to parse incoming request bodies with JSON payloads. It parses the incoming JSON data and makes it available in the req.body object.
 app.use(express.urlencoded({ limit: "30mb", extended: true })); // used to parse incoming request bodies with URL-encoded payloads.
 app.use(
   cors({
-    origin: FRONTEND_URL,
+    origin: ALLOWED_ORIGINS,
     credentials: true,
   })
 );
@@ -44,7 +45,7 @@ CommentRoutes(app);
 const MONGODB_URL =
   "mongodb+srv://wangjiayususan:AIjiayu0129@cluster0.onugccx.mongodb.net/meal?retryWrites=true&w=majority";
 
-const port = 5000;
+const port = 5001;
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
