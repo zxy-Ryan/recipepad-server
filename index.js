@@ -45,10 +45,7 @@ CommentRoutes(app);
 const MONGODB_URL =
   "mongodb+srv://wangjiayususan:AIjiayu0129@cluster0.onugccx.mongodb.net/meal?retryWrites=true&w=majority";
 
-const port = 5001;
-app.listen(port, () => {
-  console.log(`Server running on port: ${port}`);
-});
+  app.listen(process.env.PORT || 5000);
 
 mongoose.connect(MONGODB_URL);
 // .then(() => {
