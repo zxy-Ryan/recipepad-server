@@ -21,7 +21,7 @@ export const signin = async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    req.session['currentUser'] = oldUser;
+    req.session["currentUser"] = oldUser;
     // use the jwt.sign() method to create a token
     const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
       expiresIn: "1h",
@@ -51,7 +51,7 @@ export const signup = async (req, res) => {
       name: `${firstName} ${lastName}`,
     });
 
-    req.session['currentUser'] = result;
+    req.session["currentUser"] = result;
     const token = jwt.sign({ email: result.email, id: result._id }, secret, {
       expiresIn: "1h",
     });
@@ -70,7 +70,7 @@ export const googleSignIn = async (req, res) => {
     const oldUser = await UserModal.findOne({ email });
     if (oldUser) {
       const result = { _id: oldUser._id.toString(), email, name };
-      req.session['currentUser'] = result;
+      req.session["currentUser"] = result;
       const token = jwt.sign(
         { email: oldUser.email, id: oldUser._id },
         secret,
@@ -85,7 +85,7 @@ export const googleSignIn = async (req, res) => {
       email,
       name,
     });
-    req.session['currentUser'] = result;
+    req.session["currentUser"] = result;
     const token = jwt.sign({ email: result.email, id: result._id }, secret, {
       expiresIn: "1h",
     });
@@ -121,13 +121,13 @@ export const updateUser = async (req, res) => {
   const { userId } = req.params;
   const status = await dao.updateUser(userId, req.body);
   const currentUser = await dao.findUserById(userId);
-  req.session['currentUser'] = currentUser;
+  req.session["currentUser"] = currentUser;
   res.json(status);
 };
 
 export const account = async (req, res) => {
   console.log(req.session);
-  res.json(req.session['currentUser']);
+  res.json(req.session["currentUser"]);
 };
 
 export const findFollowers = async (req, res) => {

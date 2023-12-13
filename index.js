@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import morgan from "morgan";
 import userRouter from "./routes/user.js";
+import recipeRouter from "./routes/recipe.js";
 import CommentRoutes from "./Comments/routes.js";
 import session from "express-session";
 import "dotenv/config";
@@ -34,8 +35,8 @@ if (process.env.NODE_ENV !== "development") {
 app.use(session(sessionOptions));
 
 app.use("/users", userRouter); // http://localhost:5000/users/signup
-// app.use(CommentRoutes); 
-
+app.use("/recipe", recipeRouter); // http://localhost:5000/recipe
+// app.use(CommentRoutes);
 
 CommentRoutes(app);
 
@@ -43,14 +44,14 @@ const MONGODB_URL =
   "mongodb+srv://wangjiayususan:AIjiayu0129@cluster0.onugccx.mongodb.net/meal?retryWrites=true&w=majority";
 
 const port = 5000;
+app.listen(port, () => {
+  console.log(`Server running on port: ${port}`);
+});
 
-mongoose
-  .connect(MONGODB_URL)
-  .then(() => {
-    app.listen(port, () => {
-      console.log(`Server running on port: ${port}`);
-    });
-  })
-  .catch((error) => {
-    console.log(`${error} did not connect`);
-  });
+mongoose.connect(MONGODB_URL);
+// .then(() => {
+
+// })
+// .catch((error) => {
+//   console.log(`${error} did not connect`);
+// });
