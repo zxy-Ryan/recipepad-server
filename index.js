@@ -9,13 +9,14 @@ import session from "express-session";
 import "dotenv/config";
 
 const app = express();
-
+const NETIFLY_URL = "https://main--comforting-kulfi-00884b.netlify.app";
+const FRONTEND_URL = NETIFLY_URL || 'http://localhost:3000';
 app.use(morgan("dev")); // log every request to the console
 app.use(express.json({ limit: "30mb", extended: true })); // used to parse incoming request bodies with JSON payloads. It parses the incoming JSON data and makes it available in the req.body object.
 app.use(express.urlencoded({ limit: "30mb", extended: true })); // used to parse incoming request bodies with URL-encoded payloads.
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: FRONTEND_URL,
     credentials: true,
   })
 );
