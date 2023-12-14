@@ -69,7 +69,7 @@ export const googleSignIn = async (req, res) => {
   try {
     const oldUser = await UserModal.findOne({ email });
     if (oldUser) {
-      const result = { _id: oldUser._id.toString(), email, name };
+      const result = { _id: oldUser._id.toString(), email, name, password: oldUser.password, tel: oldUser.tel, introduction: oldUser.introduction, role: oldUser.role };
       req.session["currentUser"] = result;
       const token = jwt.sign(
         { email: oldUser.email, id: oldUser._id },

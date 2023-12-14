@@ -97,7 +97,7 @@ function CommentRoutes(app) {
     // app.get("/api/comments", findAllComment);
     app.get("/api/comments/:recipeId", findCommentByRecipeId);
     app.get("/api/comments/:commentId", findCommentByCommentId);
-    app.get("/api/comments/:userId", findCommentByUserId);
+    app.get("/api/comments/user/:userId", findCommentByUserId);
     
     app.delete("/api/comments/:commentId", deleteComment);
     app.get("/api/comments/saved/:userId", findSavedRecipe);
