@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import { signup, signin, googleSignIn, deleteUser, findAllUsers, findUserById, updateUser, account, findUserByUserName, findFollowings, findFollowers, findLikedRecipes } from "../controllers/user.js";
+import { signup, signin, googleSignIn, deleteUser, findAllUsers, findUserById, updateUser, account, findUserByUserName, findFollowings, findFollowers, findLikedRecipes,signout } from "../controllers/user.js";
 
 router.post("/signup", signup);
 router.post("/signin", signin);
@@ -15,5 +15,6 @@ router.post("/account", account);
 router.get("/:userId/followings", findFollowings);
 router.get("/:userId/followers", findFollowers);
 router.get("/:userId/favorites", findLikedRecipes);
+router.post("/signout", signout);
 
 export default router;

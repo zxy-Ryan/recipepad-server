@@ -169,3 +169,7 @@ export const findLikedRecipes = async (req, res) => {
     console.log(error);
   }
 };
+export const signout =  (req, res) => {
+  req.session.destroy();
+  res.json(200);
+};

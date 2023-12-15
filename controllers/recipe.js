@@ -36,7 +36,3 @@ export const getRecipe = async (req, res) => {
   }
 };
 
-export const signout =  (req, res) => {
-  req.session.destroy();
-  res.json(200);
-};
