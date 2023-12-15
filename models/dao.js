@@ -25,3 +25,7 @@ export const findLikedRecipes = (userId) => {
     console.log(userId);
   return LikeModel.find({ userId: userId }).populate("likedRecipeId");
 };
+
+export const createFollow = (follow) => {
+  FollowModel.create(follow);
+};

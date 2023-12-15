@@ -5,6 +5,7 @@ import morgan from "morgan";
 import userRouter from "./routes/user.js";
 import recipeRouter from "./routes/recipe.js";
 import CommentRoutes from "./Comments/routes.js";
+import followRoutes from "./routes/follow.js";
 import session from "express-session";
 import "dotenv/config";
 
@@ -38,6 +39,7 @@ app.use(session(sessionOptions));
 
 app.use("/users", userRouter); // http://localhost:5000/users/signup
 app.use("/recipe", recipeRouter); // http://localhost:5000/recipe
+app.use("/follow", followRoutes);
 // app.use(CommentRoutes);
 
 CommentRoutes(app);
