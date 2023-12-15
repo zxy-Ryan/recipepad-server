@@ -25,3 +25,21 @@ export const findLikedRecipes = (userId) => {
     console.log(userId);
   return LikeModel.find({ userId: userId }).populate("likedRecipeId");
 };
+
+export const createFollow = (follow) => {
+  FollowModel.create(follow);
+};
+
+export const deleteFollow = async (followerId, followingId) => {
+  try {
+    const result = await FollowModel.deleteOne({ 
+      followerId: followerId, 
+      followingId: followingId 
+    });
+    return result; 
+  } catch (error) {
+    console.error('Error deleting follow:', error); 
+    throw error; 
+  }
+};
+

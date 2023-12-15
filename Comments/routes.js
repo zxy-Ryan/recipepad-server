@@ -23,7 +23,10 @@ function CommentRoutes(app) {
     };
 
     const createComment = async (req, res) => {
+        console.log("11111111")
+        console.log(req);
         const comment = await dao.createComment(req.body);
+        console.log(comment);
         res.json(comment);
      };
 
@@ -92,20 +95,35 @@ function CommentRoutes(app) {
     };
 
 
+app.get('/likes/:recipeId', async (req, res) => {
+    try {
+      const { recipeId } = req.params;
+
+      const likedUsers = await dao.findSavedRecipeUsers(recipeId);
+      console.log("I am here")
+        console.log(likedUsers)
+      const userIds = likedUsers.map(like => like.userId);
+        
+      res.status(200).json(userIds);
+    } catch (error) {
+      res.status(500).json({ error: 'Could not retrieve liked users' });
+    }
+  }); 
     
     app.post("/api/comments", createComment);
     // app.get("/api/comments", findAllComment);
     app.get("/api/comments/:recipeId", findCommentByRecipeId);
     app.get("/api/comments/:commentId", findCommentByCommentId);
-    app.get("/api/comments/:userId", findCommentByUserId);
+    app.get("/api/comments/user/:userId", findCommentByUserId);
     
     app.delete("/api/comments/:commentId", deleteComment);
     app.get("/api/comments/saved/:userId", findSavedRecipe);
     // app.post("/api/comments/update/", updateSavedRecipe);
-    app.post("/api/comments/update/:userId", async (req, res) => {
+    app.put("/update/:userId", async (req, res) => {
         const { userId } = req.params;
         const updatedRecipeArray = req.body;
-        
+        console.log(userId)
+        console.log(updatedRecipeArray)
         try {
             // console.log("backend")
             // console.log(userId)
