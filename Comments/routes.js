@@ -45,7 +45,6 @@ function CommentRoutes(app) {
 
     const findSavedRecipe = async (req, res) => { 
         const { userId } = req.params;
-        // console.log("backend"+userId);
         const userSavedRecipe = await dao.findSaveByUserId(userId);
         res.json({ user: userSavedRecipe}); 
     };
