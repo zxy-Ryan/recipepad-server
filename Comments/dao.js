@@ -11,7 +11,28 @@ export const deleteComment = (commentId) => model.deleteOne({ _id: commentId });
 
 
 
-export const findSaveByUserId = (userId) => saveModel.findOne({ userId: userId });
+// export const findSaveByUserId = (userId) => saveModel.findOne({ userId: userId });
+
+
+export const findSaveByUserId = async (userId) => {
+    try {
+      let saveData = await saveModel.findOne({ userId: userId });
+  
+      if (!saveData) {
+        saveData = await saveModel.create({
+          userId: userId,
+          saveRecipe:['']
+        });
+      }
+  
+      return saveData;
+    } catch (error) {
+      console.error('Error finding or creating save data:', error);
+      throw error; // 可以根据需要处理错误
+    }
+  };
+
+
 // export const findSavedRecipeUsers = (recipeId) => saveModel.find({ recipeId });
 export const deleteByUserId = (userId) => saveModel.deleteOne({ _id: userId });
 export const updateSaveByUserId = (user) => saveModel.create(user);
