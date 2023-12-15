@@ -45,12 +45,7 @@ CommentRoutes(app);
 const MONGODB_URL =
   "mongodb+srv://wangjiayususan:AIjiayu0129@cluster0.onugccx.mongodb.net/meal?retryWrites=true&w=majority";
 
-  app.listen(process.env.PORT || 5000);
+  app.listen(process.env.PORT || 5001);
 
 mongoose.connect(MONGODB_URL);
-// .then(() => {
 
-// })
-// .catch((error) => {
-//   console.log(`${error} did not connect`);
-// });

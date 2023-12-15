@@ -35,3 +35,8 @@ export const getRecipe = async (req, res) => {
     res.status(404).json({ message: "Something went wrong" });
   }
 };
+
+export const signout =  (req, res) => {
+  req.session.destroy();
+  res.json(200);
+};
