@@ -4,6 +4,10 @@
 
 The RecipePad Server is the backend service for the RecipePad web application. It handles data management, authentication, and API routing, providing a secure and efficient way to store and retrieve culinary data.
 
+## Demo
+
+https://main--comforting-kulfi-00884b.netlify.app/
+
 ## Features
 
 - **RESTful API**: Provides interfaces for recipe data interactions.
@@ -42,3 +46,6 @@ To start the server, run:
 `npm start`
 
 This will launch the Node.js server on `localhost:3000`, ready to accept requests.
+
+### Frontend
+See the Frontend repository at https://github.com/zxy-Ryan/recipepad
